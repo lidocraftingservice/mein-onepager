@@ -8,8 +8,8 @@
         body { font-family: system-ui, -apple-system, sans-serif; line-height: 1.6; margin: 0; padding: 0; color: #333; background-color: #f9f9f9; }
         
         /* Navigation / Reiter */
-        nav { background: #161b22; padding: 1rem; text-align: center; sticky; top: 0; }
-        nav a { color: #fff; text-decoration: none; margin: 0 15px; font-weight: 500; }
+        nav { background: #161b22; padding: 1rem; text-align: center; position: sticky; top: 0; z-index: 100; }
+        nav a { color: #fff; text-decoration: none; margin: 0 12px; font-weight: 500; display: inline-block; padding: 5px 0; }
         nav a:hover { color: #58a6ff; }
         
         /* Header */
@@ -38,20 +38,21 @@
     <nav>
         <a href="#gravuren">Lasergravuren</a>
         <a href="#geschenke">Personalisierte Geschenke</a>
-        <a href="#b2b">Für Unternehmen und Vereine</a>
+        <a href="#vereine-schulen">Vereine & Bildung</a>
+        <a href="#b2b">Für Unternehmen</a>
         <a href="#parfuem">Parfüm</a>
     </nav>
 
     <!-- Header / Haupt-Banner -->
     <header>
         <h1>Präzise Lasergravuren & Veredelungen</h1>
-        <p>Einzigartige Geschenke für Privatpersonen & professionelle Gravuren für Unternehmen</p>
+        <p>Einzigartige Geschenke für Privatpersonen, Vereine, Schulen & Unternehmen</p>
     </header>
 
     <!-- Lasergravuren -->
     <section id="gravuren">
         <h2>Unser Gravur-Service</h2>
-        <p>Mit modernster Lasertechnik gravieren wir eine Vielzahl von Materialien präzise und langlebig nach deinen Wünschen:</p>
+        <p>Mit Lasertechnik gravieren wir eine Vielzahl von Materialien präzise und langlebig nach deinen Wünschen:</p>
         
         <div class="grid">
             <div class="card">
@@ -60,7 +61,7 @@
             </div>
             <div class="card">
                 <h3>Metall</h3>
-                <p>Gestochen scharfe Markierung von Schlüsselanhängern, Messerlingen, Edelstahlflaschen u.v.m.</p>
+                <p>Gestochen scharfe Veredelung von Schlüsselanhängern, Messerlingen, Edelstahlflaschen u.v.m.</p>
             </div>
             <div class="card">
                 <h3>Glas</h3>
@@ -73,6 +74,17 @@
     <section id="geschenke">
         <h2>Personalisierte Geschenke</h2>
         <p>Mache deine Geschenke unvergesslich. Ob Hochzeit, Geburtstag, Jubiläum oder Taufe – wir gestalten individuelle Einzelstücke mit Namen, Datum, Logos oder persönlichen Sprüchen.</p>
+    </section>
+
+    <!-- Vereine, Schulen & Kindergärten -->
+    <section id="vereine-schulen">
+        <h2>Vereine, Schulen & Kindergärten</h2>
+        <p>Sonderanfertigungen für Feste, Jubiläen, Abschiede und Vereinsbedarf:</p>
+        <ul>
+            <li><strong>Vereine:</strong> Ehrenpreise, Vereinslogos auf Brotzeitbrettern, Trinkflaschen, Untersetzer und vieles mehr.</li>
+            <li><strong>Kindergärten:</strong> Personalisierte Abschiedsgeschenke für Erzieher/innen, Holzschilder oder Namensschilder.</li>
+            <li><strong>Schulen & Abschlüsse:</strong> Erinnerungsstücke für Abschlussklassen, Namensschilder, gravierte Stifte oder Holz-Urkunden.</li>
+        </ul>
     </section>
 
     <!-- Für Unternehmen -->
@@ -88,12 +100,12 @@
     <!-- Parfüm -->
     <section id="parfuem">
         <h2>Exklusive Parfüms</h2>
-        <p>Entdecke unser ausgewähltes Sortiment an hochwertigen Düften. Ideal auch in Kombination mit einer selbstgefertigten Box.</p>
+        <p>Entdecke unser ausgewähltes Sortiment an hochwertigen Düften. Ideal auch in Kombination mit einem schönen Holzkästchen.</p>
     </section>
 
     <!-- Footer -->
     <footer>
-        <p>&copy; 2026 Crafts&Presents by LiDo</p>
+        <p>&copy; 2026 Crafts & Presents by LiDo</p>
         <!-- Gesetzlich vorgeschriebene Verlinkungen -->
         <a href="impressum.html">Impressum</a> | 
         <a href="datenschutz.html">Datenschutzerklärung</a>
