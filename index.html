@@ -26,6 +26,14 @@
         .card { background: #f6f8fa; padding: 1.5rem; border-radius: 6px; border: 1px solid #e1e4e8; }
         .card h3 { margin-top: 0; color: #0969da; }
 
+        /* Kontakt-Buttons */
+        .contact-links { display: flex; gap: 15px; flex-wrap: wrap; margin-top: 15px; }
+        .btn { display: inline-block; padding: 10px 20px; border-radius: 6px; text-decoration: none; font-weight: 500; color: white; }
+        .btn-whatsapp { background-color: #25D366; }
+        .btn-whatsapp:hover { background-color: #1ebc57; }
+        .btn-email { background-color: #0969da; }
+        .btn-email:hover { background-color: #0451b0; }
+
         /* Footer */
         footer { background: #f6f8fa; border-top: 1px solid #e1e4e8; text-align: center; padding: 2rem; margin-top: 4rem; }
         footer a { color: #0969da; text-decoration: none; margin: 0 10px; }
@@ -42,6 +50,7 @@
         <a href="index.html#b2b">Für Unternehmen</a>
         <a href="index.html#parfuem">Parfüm</a>
         <a href="galerie.html">Bildergalerie</a>
+        <a href="impressum.html">Kontakt</a>
     </nav>
 
     <!-- Header / Haupt-Banner -->
@@ -102,6 +111,19 @@
     <section id="parfuem">
         <h2>Exklusive Parfüms</h2>
         <p>Entdecke unser ausgewähltes Sortiment an hochwertigen Düften. Ideal auch in Kombination mit einem schönen Holzkästchen.</p>
+    </section>
+
+    <!-- Kontaktbereich -->
+    <section id="kontakt">
+        <h2>Kontakt</h2>
+        <p>Du hast eine Frage oder möchtest ein individuelles Projekt anfragen? Tritt direkt mit uns in Kontakt:</p>
+        <div class="contact-links">
+            <a href="https://wa.me/49123456789" class="btn btn-whatsapp" target="_blank" rel="noopener noreferrer">Per WhatsApp schreiben</a>
+            <a href="mailto:deine-email@beispiel.de" class="btn btn-email">E-Mail senden</a>
+        </div>
+        <p style="margin-top: 20px; font-size: 0.95rem; color: #666;">
+            Unsere vollständigen Anbieterkennzeichnungen findest du in unserem <a href="impressum.html">Impressum</a>.
+        </p>
     </section>
 
     <!-- Footer -->
