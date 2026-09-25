@@ -1,284 +1,40 @@
-<!DOCTYPE html>
-<html lang="de">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Bildergalerie - Crafts & Presents by LiDo</title>
-    <style>
-        body { font-family: system-ui, -apple-system, sans-serif; line-height: 1.6; margin: 0; padding: 0; color: #333; background-color: #f9f9f9; }
-        
-        /* Navigation */
-        nav { background: #161b22; padding: 1rem; text-align: center; position: sticky; top: 0; z-index: 100; }
-        nav a { color: #fff; text-decoration: none; margin: 0 12px; font-weight: 500; display: inline-block; padding: 5px 0; }
-        nav a:hover { color: #58a6ff; }
-        
-        /* Header */
-        header { background: #0d1117; color: white; padding: 3rem 2rem; text-align: center; }
-        header h1 { margin: 0 0 10px 0; font-size: 2.2rem; }
-        header p { font-size: 1.1rem; color: #8b949e; margin: 0; }
-        
-        /* Abschnitte */
-        section { max-width: 900px; margin: 3rem auto; padding: 2rem; background: white; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.05); }
-        h2 { color: #0d1117; border-bottom: 2px solid #f0f0f0; padding-bottom: 10px; margin-top: 0; }
-
-        /* Bildergalerie Grid */
-        .gallery-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-            gap: 20px;
-            margin-top: 20px;
-        }
-        .gallery-card {
-            background: #fff;
-            border: 1px solid #e1e4e8;
-            border-radius: 8px;
-            overflow: hidden;
-            box-shadow: 0 2px 6px rgba(0,0,0,0.05);
-            transition: transform 0.2s ease;
-            cursor: pointer;
-        }
-        .gallery-card:hover {
-            transform: translateY(-4px);
-        }
-        .gallery-card img {
-            width: 100%;
-            height: 200px;
-            object-fit: cover;
-            display: block;
-        }
-        .gallery-card .info {
-            padding: 12px 15px;
-        }
-        .gallery-card h3 {
-            margin: 0 0 5px 0;
-            font-size: 1.1rem;
-            color: #0969da;
-        }
-        .gallery-card p {
-            margin: 0;
-            font-size: 0.9rem;
-            color: #57606a;
-        }
-
-        /* --- LIGHTBOX OVERLAY --- */
-        .lightbox {
-            display: none;
-            position: fixed;
-            z-index: 1000;
-            left: 0;
-            top: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0, 0, 0, 0.85);
-            justify-content: center;
-            align-items: center;
-            flex-direction: column;
-        }
-        .lightbox-content {
-            max-width: 85%;
-            max-height: 75vh;
-            border-radius: 6px;
-            box-shadow: 0 0 20px rgba(255,255,255,0.2);
-        }
-        .lightbox-caption {
-            color: #fff;
-            margin-top: 15px;
-            font-size: 1.1rem;
-            text-align: center;
-        }
-        .lightbox-close {
-            position: absolute;
-            top: 20px;
-            right: 30px;
-            color: #fff;
-            font-size: 40px;
-            font-weight: bold;
-            cursor: pointer;
-            user-select: none;
-        }
-        .lightbox-close:hover {
-            color: #58a6ff;
-        }
-
-        /* Vor- und Zurück-Pfeile */
-        .lightbox-prev, .lightbox-next {
-            position: absolute;
-            top: 50%;
-            transform: translateY(-50%);
-            color: #fff;
-            font-size: 35px;
-            font-weight: bold;
-            padding: 12px 18px;
-            background: rgba(0, 0, 0, 0.4);
-            border-radius: 50%;
-            cursor: pointer;
-            user-select: none;
-            transition: background 0.2s ease, color 0.2s ease;
-        }
-        .lightbox-prev { left: 20px; }
-        .lightbox-next { right: 20px; }
-
-        .lightbox-prev:hover, .lightbox-next:hover {
-            background: rgba(255, 255, 255, 0.2);
-            color: #58a6ff;
-        }
-
-        /* Footer */
-        footer { background: #f6f8fa; border-top: 1px solid #e1e4e8; text-align: center; padding: 2rem; margin-top: 4rem; }
-        footer a { color: #0969da; text-decoration: none; margin: 0 10px; }
-        footer a:hover { text-decoration: underline; }
-    </style>
-</head>
-<body>
-
-    <!-- Navigation -->
-    <nav>
-        <a href="index.html#gravuren">Lasergravuren</a>
-        <a href="index.html#geschenke">Personalisierte Geschenke</a>
-        <a href="index.html#vereine-schulen">Vereine & Bildung</a>
-        <a href="index.html#b2b">Für Unternehmen</a>
-        <a href="index.html#parfuem">Parfüm</a>
-        <a href="galerie.html">Bildergalerie</a>
-    </nav>
-
-    <!-- Header -->
-    <header>
-        <h1>Bildergalerie & Referenzen</h1>
-        <p>Ein Einblick in unsere gefertigten Werkstücke und Gravuren</p>
-    </header>
-
-    <!-- Galerie-Bereich -->
-    <section>
-        <h2>Unsere Arbeiten</h2>
-        <p>Hier siehst du einige Beispiele unserer Kundenprojekte und Sonderanfertigungen:</p>
-        
-        <div class="gallery-grid">
-            
-            <!-- Bild 1 -->
-            <div class="gallery-card">
-                <img src="bilder/holzbrett.jpg" alt="Graviertes Holz-Schneidebrett">
-                <div class="info">
-                    <h3>Holz-Schneidebrett</h3>
-                    <p>Feine Lasergravur für eine persönliche Küchen-Deko.</p>
-                </div>
+<section>
+    <h2>Unsere Arbeiten nach Material</h2>
+    <p>Entdecke unsere veredelten Werkstücke, sortiert nach Werkstoff:</p>
+    
+    <!-- Gruppe 1: Holz -->
+    <h3 class="category-title">Holz</h3>
+    <div class="gallery-grid">
+        <div class="gallery-card">
+            <img src="bilder/holz/holzbrett.jpg" alt="Graviertes Holz-Schneidebrett">
+            <div class="info">
+                <h3>Holz-Schneidebrett</h3>
+                <p>Feine Lasergravur für eine persönliche Küchen-Deko.</p>
             </div>
-
-            <!-- Bild 2 -->
-            <div class="gallery-card">
-                <img src="bilder/schluesselanhaenger.jpg" alt="Metall-Schlüsselanhänger">
-                <div class="info">
-                    <h3>Metall-Anhänger</h3>
-                    <p>Gestochen scharfes Vereinslogo auf Edelstahl.</p>
-                </div>
-            </div>
-
-            <!-- Bild 3 -->
-            <div class="gallery-card">
-                <img src="bilder/glastrophaee.jpg" alt="Elegante Glastrophäe">
-                <div class="info">
-                    <h3>Glastrophäe</h3>
-                    <p>Edle Mattierung für Jubiläen und Sportpreise.</p>
-                </div>
-            </div>
-
-            <!-- Bild 4 -->
-            <div class="gallery-card">
-                <img src="bilder/schieferplatte.jpg" alt="Gravierte Schieferplatte">
-                <div class="info">
-                    <h3>Schiefer-Untersetzer</h3>
-                    <p>Kontrastreiche Gravur auf Naturstein.</p>
-                </div>
-            </div>
-
         </div>
-    </section>
-
-    <!-- Lightbox Modal Element mit Pfeilen -->
-    <div id="lightbox" class="lightbox">
-        <span class="lightbox-close">&times;</span>
-        <span class="lightbox-prev">&#10094;</span>
-        <img class="lightbox-content" id="lightbox-img" alt="Vergrößertes Bild">
-        <span class="lightbox-next">&#10095;</span>
-        <div class="lightbox-caption" id="lightbox-caption"></div>
     </div>
 
-    <!-- Footer -->
-    <footer>
-        <p>&copy; 2026 Crafts & Presents by LiDo</p>
-        <a href="impressum.html">Impressum</a> | 
-        <a href="datenschutz.html">Datenschutzerklärung</a>
-    </footer>
+    <!-- Gruppe 2: Metall -->
+    <h3 class="category-title">Metall</h3>
+    <div class="gallery-grid">
+        <div class="gallery-card">
+            <img src="bilder/metall/schluesselanhaenger.jpg" alt="Metall-Schlüsselanhänger">
+            <div class="info">
+                <h3>Metall-Anhänger</h3>
+                <p>Gestochen scharfes Vereinslogo auf Edelstahl.</p>
+            </div>
+        </div>
+    </div>
 
-    <!-- Lightbox JavaScript -->
-    <script>
-        const lightbox = document.getElementById('lightbox');
-        const lightboxImg = document.getElementById('lightbox-img');
-        const lightboxCaption = document.getElementById('lightbox-caption');
-        const closeBtn = document.querySelector('.lightbox-close');
-        const prevBtn = document.querySelector('.lightbox-prev');
-        const nextBtn = document.querySelector('.lightbox-next');
-
-        const cards = Array.from(document.querySelectorAll('.gallery-card'));
-        let currentIndex = 0;
-
-        // Bild anhand des Index anzeigen
-        function showImage(index) {
-            if (index < 0) {
-                currentIndex = cards.length - 1; // Zum letzten Bild wechseln
-            } else if (index >= cards.length) {
-                currentIndex = 0; // Zum ersten Bild wechseln
-            } else {
-                currentIndex = index;
-            }
-
-            const card = cards[currentIndex];
-            const img = card.querySelector('img');
-            const title = card.querySelector('h3').innerText;
-
-            lightboxImg.src = img.src;
-            lightboxCaption.innerText = title;
-        }
-
-        // Klick auf Galerie-Karte
-        cards.forEach((card, index) => {
-            card.addEventListener('click', () => {
-                showImage(index);
-                lightbox.style.display = 'flex';
-            });
-        });
-
-        // Pfeile-Events
-        prevBtn.addEventListener('click', (e) => {
-            e.stopPropagation();
-            showImage(currentIndex - 1);
-        });
-
-        nextBtn.addEventListener('click', (e) => {
-            e.stopPropagation();
-            showImage(currentIndex + 1);
-        });
-
-        // Schließen per X
-        closeBtn.addEventListener('click', () => {
-            lightbox.style.display = 'none';
-        });
-
-        // Schließen per Hintergrund-Klick
-        lightbox.addEventListener('click', (e) => {
-            if (e.target === lightbox) {
-                lightbox.style.display = 'none';
-            }
-        });
-
-        // Tastatursteuerung (Pfeiltasten & Esc)
-        document.addEventListener('keydown', (e) => {
-            if (lightbox.style.display === 'flex') {
-                if (e.key === 'ArrowLeft') showImage(currentIndex - 1);
-                if (e.key === 'ArrowRight') showImage(currentIndex + 1);
-                if (e.key === 'Escape') lightbox.style.display = 'none';
-            }
-        });
-    </script>
-
-</body>
-</html>
+    <!-- Gruppe 3: Kork -->
+    <h3 class="category-title">Kork</h3>
+    <div class="gallery-grid">
+        <div class="gallery-card">
+            <img src="bilder/kork/untersetzer.jpg" alt="Gravierter Korkuntersetzer">
+            <div class="info">
+                <h3>Kork-Untersetzer</h3>
+                <p>Nachhaltiges Naturmaterial mit individueller Gravur.</p>
+            </div>
+        </div>
+    </div>
+</section>
