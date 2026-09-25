@@ -75,8 +75,8 @@
             flex-direction: column;
         }
         .lightbox-content {
-            max-width: 90%;
-            max-height: 80vh;
+            max-width: 85%;
+            max-height: 75vh;
             border-radius: 6px;
             box-shadow: 0 0 20px rgba(255,255,255,0.2);
         }
@@ -97,6 +97,29 @@
             user-select: none;
         }
         .lightbox-close:hover {
+            color: #58a6ff;
+        }
+
+        /* Vor- und Zurück-Pfeile */
+        .lightbox-prev, .lightbox-next {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #fff;
+            font-size: 35px;
+            font-weight: bold;
+            padding: 12px 18px;
+            background: rgba(0, 0, 0, 0.4);
+            border-radius: 50%;
+            cursor: pointer;
+            user-select: none;
+            transition: background 0.2s ease, color 0.2s ease;
+        }
+        .lightbox-prev { left: 20px; }
+        .lightbox-next { right: 20px; }
+
+        .lightbox-prev:hover, .lightbox-next:hover {
+            background: rgba(255, 255, 255, 0.2);
             color: #58a6ff;
         }
 
@@ -121,7 +144,7 @@
     <!-- Header -->
     <header>
         <h1>Bildergalerie & Referenzen</h1>
-        <p>Ein Einblick in unsere gefertigten Werkstücke und Gravuren (Klicke auf ein Bild zum Vergrößern)</p>
+        <p>Ein Einblick in unsere gefertigten Werkstücke und Gravuren</p>
     </header>
 
     <!-- Galerie-Bereich -->
@@ -170,10 +193,12 @@
         </div>
     </section>
 
-    <!-- Lightbox Modal Element -->
+    <!-- Lightbox Modal Element mit Pfeilen -->
     <div id="lightbox" class="lightbox">
         <span class="lightbox-close">&times;</span>
+        <span class="lightbox-prev">&#10094;</span>
         <img class="lightbox-content" id="lightbox-img" alt="Vergrößertes Bild">
+        <span class="lightbox-next">&#10095;</span>
         <div class="lightbox-caption" id="lightbox-caption"></div>
     </div>
 
@@ -184,34 +209,73 @@
         <a href="datenschutz.html">Datenschutzerklärung</a>
     </footer>
 
-    <!-- Lightbox JavaScript -->
+    <!-- Lightbox JavaScript mit Blätterfunktion -->
     <script>
         const lightbox = document.getElementById('lightbox');
         const lightboxImg = document.getElementById('lightbox-img');
         const lightboxCaption = document.getElementById('lightbox-caption');
         const closeBtn = document.querySelector('.lightbox-close');
+        const prevBtn = document.querySelector('.lightbox-prev');
+        const nextBtn = document.querySelector('.lightbox-next');
 
-        // Alle Galerie-Karten auswählen
-        document.querySelectorAll('.gallery-card').forEach(card => {
+        const cards = Array.from(document.querySelectorAll('.gallery-card'));
+        let currentIndex = 0;
+
+        // Bild anhand des Index anzeigen
+        function showImage(index) {
+            if (index < 0) {
+                currentIndex = cards.length - 1; // Zum letzten Bild wechseln
+            } else if (index >= cards.length) {
+                currentIndex = 0; // Zum ersten Bild wechseln
+            } else {
+                currentIndex = index;
+            }
+
+            const card = cards[currentIndex];
+            const img = card.querySelector('img');
+            const title = card.querySelector('h3').innerText;
+
+            lightboxImg.src = img.src;
+            lightboxCaption.innerText = title;
+        }
+
+        // Klick auf Galerie-Karte
+        cards.forEach((card, index) => {
             card.addEventListener('click', () => {
-                const img = card.querySelector('img');
-                const title = card.querySelector('h3').innerText;
-                
-                lightboxImg.src = img.src;
-                lightboxCaption.innerText = title;
+                showImage(index);
                 lightbox.style.display = 'flex';
             });
         });
 
-        // Schließen per Button
+        // Pfeile-Events
+        prevBtn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            showImage(currentIndex - 1);
+        });
+
+        nextBtn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            showImage(currentIndex + 1);
+        });
+
+        // Schließen per X
         closeBtn.addEventListener('click', () => {
             lightbox.style.display = 'none';
         });
 
-        // Schließen per Klick auf den Hintergrund
+        // Schließen per Hintergrund-Klick
         lightbox.addEventListener('click', (e) => {
-            if (e.target === lightbox || e.target === closeBtn) {
+            if (e.target === lightbox) {
                 lightbox.style.display = 'none';
+            }
+        });
+
+        // Tastatursteuerung (Pfeiltasten & Esc)
+        document.addEventListener('keydown', (e) => {
+            if (lightbox.style.display === 'flex') {
+                if (e.key === 'ArrowLeft') showImage(currentIndex - 1);
+                if (e.key === 'ArrowRight') showImage(currentIndex + 1);
+                if (e.key === 'Escape') lightbox.style.display = 'none';
             }
         });
     </script>
